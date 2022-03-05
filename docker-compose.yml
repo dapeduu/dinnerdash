@@ -14,7 +14,7 @@ services:
       POSTGRES_PASSWORD: ${PG_PASSWORD}
   redis:
     image: redis
-    command: redis-server --requirepass ${REDIS_PASSWORD} --loglevel warning 
+    command: redis-server --loglevel warning
     hostname: redis
     ports:
       - '6379:6379'
