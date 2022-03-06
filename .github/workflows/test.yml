@@ -15,11 +15,7 @@ jobs:
       postgres:
         # Docker Hub image
         image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_DB: $PG_DB_NAME
-          POSTGRES_USER: $PG_USER
-          POSTGRES_PASSWORD: $PG_PASSWORD
+
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -64,9 +60,14 @@ jobs:
           DB_CONNECTION: pg
           PG_HOST: localhost
           PG_PORT: 5433
+          PG_DB_NAME: lucid
           PG_USER: lucid
           PG_PASSWORD: password
-          PG_DB_NAME: lucid
+
+          # Postgres service variables
+          POSTGRES_DB: lucid
+          POSTGRES_USER: lucid
+          POSTGRES_PASSWORD: password
 
           REDIS_CONNECTION: local
           REDIS_HOST: 127.0.0.1
