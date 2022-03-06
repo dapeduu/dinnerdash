@@ -17,9 +17,9 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_DB: test-db
-          POSTGRES_USER: test-user
-          POSTGRES_PASSWORD: test-password
+          POSTGRES_DB: ${{env.PG_DB_NAME}}
+          POSTGRES_USER: ${{env.PG_USER}}
+          POSTGRES_PASSWORD: ${{env.PG_PASSWORD}}
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
