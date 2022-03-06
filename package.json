@@ -8,7 +8,9 @@
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "test": "node -r @adonisjs/assembler/build/register japaFile.ts"
+    "pre:test": "PG_PORT=5433 node ace migration:fresh",
+    "japa:test": "PG_PORT=5433 node -r @adonisjs/assembler/build/register japaFile.ts",
+    "test": "yarn pre:test && yarn japa:test"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.0",
