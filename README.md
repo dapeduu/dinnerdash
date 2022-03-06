@@ -6,6 +6,10 @@ O setup inicial é todo descrito na aba de [instalação](https://docs.adonisjs.
 
 Depois dele, percebi que não havia testes. Mas encontrei um [artigo](https://docs.adonisjs.com/cookbooks/testing-adonisjs-apps#document) no site mostrando como configurar os testes. Ele desencoraja o uso do [Jest](https://jestjs.io), pois ele tem muitas funcionalidades inúteis para testes de backend. Então vamos usar o [Japa](https://www.npmjs.com/package/japa).
 
+A autenticação foi feita com o [@adonisjs/auth](https://docs.adonisjs.com/guides/auth/introduction) usando o método de API Tokens. Ele gera a model de usuário já com algumas configurações. Foi criado automaticamente um middleware para fazer a validação do token. Os tokens são armazenados no Redis, quando expirados eles são removidos e portanto invalidados.
+
+Para tornar uma rota privada, basta colocar `.middleware("auth")` no final dela e será exigido o bearer token no header.
+
 ## Scripts
 
 Explicando cada script do package.json
