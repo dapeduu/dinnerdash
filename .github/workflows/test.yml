@@ -10,6 +10,41 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+        env:
+          # Must be equivalent to the PG env variables
+          POSTGRES_DB: lucid
+          POSTGRES_USER: lucid
+          POSTGRES_PASSWORD: password
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5433:5432
+
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 6379:6379
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14.x
@@ -20,3 +55,22 @@ jobs:
         run: yarn
       - name: Run tests
         run: yarn test
+
+        env:
+          PORT: 3333
+          HOST: 0.0.0.0
+          NODE_ENV: development
+          APP_KEY: wHd6Fe3_qdJZc6FEmQktE-m4wuILTNp0
+          DRIVE_DISK: local
+
+          DB_CONNECTION: pg
+          PG_HOST: localhost
+          PG_PORT: 5433
+          PG_DB_NAME: lucid
+          PG_USER: lucid
+          PG_PASSWORD: password
+
+          REDIS_CONNECTION: local
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
+          REDIS_PASSWORD:
