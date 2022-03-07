@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import MealCategory from './MealCategory'
 
 export default class Meal extends BaseModel {
   @column({ isPrimary: true })
@@ -22,4 +23,10 @@ export default class Meal extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public mealCategoryId: string
+
+  @belongsTo(() => MealCategory)
+  public mealCategory: BelongsTo<typeof MealCategory>
 }

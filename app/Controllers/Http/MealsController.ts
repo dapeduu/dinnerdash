@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Meal from 'App/Models/Meal'
+import MealCategory from 'App/Models/MealCategory'
 
 export default class MealsController {
   public async index() {
@@ -9,9 +10,10 @@ export default class MealsController {
   }
 
   public async store({ request }: HttpContextContract) {
-    const { name, description, price, available } = request.body()
+    const { name, description, price, available, mealCategoryId } = request.body()
 
-    const meal = await Meal.create({
+    const mealCategory = await MealCategory.findOrFail(mealCategoryId)
+    const meal = await mealCategory.related('meals').create({
       name,
       description,
       price,
@@ -25,6 +27,7 @@ export default class MealsController {
     const mealId = params?.id
 
     const meal = await Meal.findOrFail(mealId)
+    await meal.load('mealCategory')
 
     return meal
   }

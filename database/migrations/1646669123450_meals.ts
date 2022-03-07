@@ -11,6 +11,8 @@ export default class Meals extends BaseSchema {
       table.decimal('price', 10.2).notNullable()
       table.boolean('available').defaultTo(false)
 
+      table.integer('meal_category_id').unsigned().references('meal_categories.id')
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
