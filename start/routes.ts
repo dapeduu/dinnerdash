@@ -32,3 +32,7 @@ Route.post('/login', 'AuthenticationController.login')
 // MealCategory
 
 Route.resource('meal_categories', 'MealCategoriesController').apiOnly()
+
+// Meal
+
+Route.resource('meals', 'MealsController').apiOnly()
