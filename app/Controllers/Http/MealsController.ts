@@ -11,6 +11,14 @@ export default class MealsController {
 
   public async store({ request }: HttpContextContract) {
     const { name, description, price, available, mealCategoryId } = request.body()
+    const image = request.file('image')
+
+    await image?.moveToDisk('meal-images', {
+      contentType: 'image/ief',
+      name: `Meal-${name}.${image.extname}`,
+    })
+
+    const imageUrl = image?.filePath
 
     const mealCategory = await MealCategory.findOrFail(mealCategoryId)
     const meal = await mealCategory.related('meals').create({
@@ -18,6 +26,7 @@ export default class MealsController {
       description,
       price,
       available,
+      image: imageUrl,
     })
 
     return meal

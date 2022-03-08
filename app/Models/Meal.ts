@@ -18,6 +18,9 @@ export default class Meal extends BaseModel {
   @column()
   public available: boolean
 
+  @column()
+  public image: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

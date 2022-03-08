@@ -35,6 +35,7 @@
   "dependencies": {
     "@adonisjs/auth": "^8.0.12",
     "@adonisjs/core": "^5.4.0",
+    "@adonisjs/drive-gcs": "^1.0.3",
     "@adonisjs/lucid": "^17.0.1",
     "@adonisjs/redis": "^7.1.1",
     "@adonisjs/repl": "^3.1.0",
