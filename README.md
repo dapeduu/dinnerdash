@@ -10,6 +10,8 @@ A autenticação foi feita com o [@adonisjs/auth](https://docs.adonisjs.com/guid
 
 Para tornar uma rota privada, basta colocar `.middleware("auth")` no final dela e será exigido o bearer token no header.
 
+Usamos o Drive do adonis para lidar com arquivos. Através da variável de ambiente `DRIVE_DISK` nós dizemos se vamos armazenar o arquivo em memória ou no Google Cloud Storage.
+
 ## Scripts
 
 Explicando cada script do package.json
@@ -35,3 +37,4 @@ Ex: ✨ Adds a new feature
 
 - Setup project: https://docs.adonisjs.com/guides/installation
 - Setup tests: https://docs.adonisjs.com/cookbooks/testing-adonisjs-apps#document
+- Gerando o arquivo de keys do Google Cloud Storage: https://cloud.google.com/iam/docs/creating-managing-service-account-keys
