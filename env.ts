@@ -27,7 +27,7 @@ export default Env.rules({
   PG_USER: Env.schema.string(),
   PG_PASSWORD: Env.schema.string.optional(),
   PG_DB_NAME: Env.schema.string(),
-  SSL_REJECT_UNAUTHORIZED: Env.schema.boolean(),
+  SSL_REJECT_UNAUTHORIZED: Env.schema.boolean.optional(),
 
   REDIS_CONNECTION: Env.schema.enum(['local'] as const),
   REDIS_HOST: Env.schema.string({ format: 'host' }),
