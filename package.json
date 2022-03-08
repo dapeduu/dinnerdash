@@ -2,6 +2,9 @@
   "name": "dinnerdash",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "yarn": "1.x"
+  },
   "scripts": {
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
