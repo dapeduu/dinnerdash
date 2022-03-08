@@ -15,9 +15,12 @@ export default class MealCategoriesController {
   }
 
   public async show({ params }: HttpContextContract) {
-    const mealCatetegoryId = params?.id
+    const mealCategoryId = params?.id
 
-    return await MealCategory.findBy('id', mealCatetegoryId)
+    const mealCategory = await MealCategory.findOrFail(mealCategoryId)
+    await mealCategory.load('meals')
+
+    return mealCategory
   }
 
   public async update({ params, request }: HttpContextContract) {
