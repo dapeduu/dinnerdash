@@ -33,6 +33,6 @@ export default Env.rules({
   REDIS_PORT: Env.schema.number(),
   REDIS_PASSWORD: Env.schema.string.optional(),
 
-  GCS_KEY_FILENAME: Env.schema.string(),
-  GCS_BUCKET: Env.schema.string(),
+  GCS_KEY_FILENAME: Env.schema.string.optional(),
+  GCS_BUCKET: Env.schema.string.optional(),
 })
