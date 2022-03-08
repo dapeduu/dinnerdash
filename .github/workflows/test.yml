@@ -69,7 +69,7 @@ jobs:
           PG_DB_NAME: lucid
           PG_USER: lucid
           PG_PASSWORD: password
-          SSL_REJECT_UNAUTHORIZED: true
+          SSL_REJECT_UNAUTHORIZED: false
 
           REDIS_CONNECTION: local
           REDIS_HOST: 127.0.0.1
