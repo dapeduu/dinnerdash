@@ -37,6 +37,14 @@ Route.resource('meal_categories', 'MealCategoriesController').apiOnly()
 
 Route.resource('meals', 'MealsController').apiOnly()
 
+// Order
+
+Route.resource('order', 'OrdersController').apiOnly()
+
 // OrderHasMeal
 
 Route.resource('order_has_meals', 'OrderHasMealsController').apiOnly()
+
+// Situation
+
+Route.resource('situations', 'SituationsController').apiOnly()
