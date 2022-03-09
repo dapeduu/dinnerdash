@@ -3,9 +3,10 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class Situations extends BaseSchema {
   protected tableName = 'situations'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.string('description').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
@@ -15,7 +16,7 @@ export default class Situations extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
