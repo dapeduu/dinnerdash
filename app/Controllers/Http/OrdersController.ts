@@ -13,39 +13,44 @@ export default class OrdersController {
     const userId = request.input('userId')
     const situationId = request.input('situationId')
 
-    const orderHasMeal = await Order.create({
+    const order = await Order.create({
       price,
       userId,
       situationId,
     })
 
-    return orderHasMeal
+    return order
   }
 
   public async show({ params }: HttpContextContract) {
     const orderId = params.id
 
-    const orderHasMeal = await Order.findOrFail(orderId)
+    const order = await Order.findOrFail(orderId)
 
-    return orderHasMeal
+    return order
   }
 
   public async update({ params, request }: HttpContextContract) {
     const orderId = params.id
+    const situationId = request.input('situationId')
     const price = request.input('price')
 
-    const orderHasMeal = await Order.findOrFail(orderId)
-    await orderHasMeal.merge({
+    const order = await Order.findOrFail(orderId)
+    await order.merge({
       price,
+      situationId,
     })
+    await order.save()
+
+    return order
   }
 
   public async destroy({ params }: HttpContextContract) {
     const orderId = params.id
 
-    const orderHasMeal = await Order.findOrFail(orderId)
-    await orderHasMeal.delete()
+    const order = await Order.findOrFail(orderId)
+    await order.delete()
 
-    return orderHasMeal
+    return order
   }
 }
