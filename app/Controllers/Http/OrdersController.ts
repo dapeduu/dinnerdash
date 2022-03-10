@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Meal from 'App/Models/Meal'
 import Order from 'App/Models/Order'
 
 export default class OrdersController {
@@ -26,10 +27,14 @@ export default class OrdersController {
     const orderId = params.id
 
     const order = await Order.findOrFail(orderId)
-    await order.load('situation')
-    await order.load('user')
+    await order.load((loader) => {
+      loader.preload('situation').preload('user').preload('orderHasMeal')
+    })
 
-    return order
+    const mealsIds = order.orderHasMeal.map((item) => item.mealId)
+    const meals = await Promise.all(mealsIds.map(async (mealId) => await Meal.findOrFail(mealId)))
+
+    return { order, meals }
   }
 
   public async update({ params, request }: HttpContextContract) {
