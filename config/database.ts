@@ -8,7 +8,7 @@
 import Env from '@ioc:Adonis/Core/Env'
 import { DatabaseConfig } from '@ioc:Adonis/Lucid/Database'
 
-const shouldUseSSL = Env.get('SSL_REJECT_UNAUTHORIZED')
+const shouldUseSSL = Env.get('NODE_ENV') === 'production'
 
 const databaseConfig: DatabaseConfig = {
   connection: Env.get('DB_CONNECTION'),
