@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import MealCategory from './MealCategory'
+import OrderHasMeal from './OrderHasMeal'
 
 export default class Meal extends BaseModel {
   @column({ isPrimary: true })
@@ -29,6 +30,9 @@ export default class Meal extends BaseModel {
 
   @column()
   public mealCategoryId: string
+
+  @hasMany(() => OrderHasMeal)
+  public orderHasMeal: HasMany<typeof OrderHasMeal>
 
   @belongsTo(() => MealCategory)
   public mealCategory: BelongsTo<typeof MealCategory>

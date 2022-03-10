@@ -21,11 +21,11 @@ export default class Order extends BaseModel {
   @column()
   public userId: string
 
-  @belongsTo(() => User)
-  public user: BelongsTo<typeof User>
-
   @column()
   public situationId: string
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 
   @belongsTo(() => Situation)
   public situation: BelongsTo<typeof Situation>
