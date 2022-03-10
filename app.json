@@ -1,3 +1,8 @@
 {
-  "addons": ["heroku-postgresql:hobby-dev", "heroku-redis:hobby-dev"]
+  "addons": ["heroku-postgresql:hobby-dev", "heroku-redis:hobby-dev"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/buyersight/heroku-google-application-credentials-buildpack.git"
+    }
+  ]
 }

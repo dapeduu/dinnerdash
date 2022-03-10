@@ -5,4 +5,4 @@ coverage
 .DS_STORE
 .env
 tmp
-google-cloud-keys.json
+google-credentials.json
