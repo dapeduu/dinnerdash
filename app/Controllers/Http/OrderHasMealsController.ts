@@ -38,6 +38,9 @@ export default class OrderHasMealsController {
     await orderHasMeal.merge({
       quantity,
     })
+    await orderHasMeal.save()
+
+    return orderHasMeal
   }
 
   public async destroy({ params }: HttpContextContract) {

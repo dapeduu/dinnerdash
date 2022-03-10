@@ -26,6 +26,8 @@ export default class OrdersController {
     const orderId = params.id
 
     const order = await Order.findOrFail(orderId)
+    await order.load('situation')
+    await order.load('user')
 
     return order
   }

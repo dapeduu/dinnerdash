@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { afterSave, BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Meal from './Meal'
 import Order from './Order'
 
@@ -27,4 +27,11 @@ export default class OrderHasMeal extends BaseModel {
 
   @hasOne(() => Order)
   public order: HasOne<typeof Order>
+
+  @afterSave()
+  public static async updateOrderPrice(orderHasMeal: OrderHasMeal) {
+    const order = await Order.findOrFail(orderHasMeal.orderId)
+
+    await order.updatePrice(order)
+  }
 }

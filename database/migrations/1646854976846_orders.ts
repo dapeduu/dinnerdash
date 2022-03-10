@@ -9,6 +9,7 @@ export default class Orders extends BaseSchema {
       table.decimal('price', 10.2).notNullable().defaultTo(0.0)
       table.integer('user_id').unsigned().references('users.id')
       table.integer('situation_id').unsigned().references('situations.id')
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
