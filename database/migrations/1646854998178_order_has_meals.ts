@@ -1,11 +1,14 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Orders extends BaseSchema {
-  protected tableName = 'orders'
+export default class OrderHasMeals extends BaseSchema {
+  protected tableName = 'order_has_meals'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('quantity').notNullable().defaultTo(1)
+      table.integer('order_id').unsigned().references('orders.id')
+      table.integer('meal_id').unsigned().references('meals.id')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
@@ -15,7 +18,7 @@ export default class Orders extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
