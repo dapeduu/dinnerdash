@@ -26,6 +26,8 @@ export default class OrderHasMealsController {
     const orderHasMealId = params.id
 
     const orderHasMeal = await OrderHasMeal.findOrFail(orderHasMealId)
+    await orderHasMeal.load('meal')
+    await orderHasMeal.load('order')
 
     return orderHasMeal
   }
